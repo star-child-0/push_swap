@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:30:58 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/16 19:02:18 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:51:29 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	lis_algorithm(t_intl **list_a, t_intl **list_b)
 {

@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:49:26 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/16 19:06:41 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:24:16 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/checker.h"
 
 void	exec_move_r(char *mov, t_intl **list_a, t_intl **list_b)
 {

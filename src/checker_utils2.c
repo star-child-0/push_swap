@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:05:51 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/16 19:06:25 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:24:16 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/checker.h"
 
 int	is_tintl_ordered_c(t_intl **list)
 {

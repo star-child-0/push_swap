@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:16:11 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/19 19:16:17 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:51:29 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	mov_reorder(t_intl **list)
 {

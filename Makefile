@@ -5,7 +5,7 @@ FILES = main.c sorting_algorithms.c lis_algorithm.c algorithm_selector.c \
 BONUS_FILES = checker.c checker_utils.c checker_utils2.c \
 		checker_operations.c checker_operations2.c
 
-LIBFT = ../libft/libft.a
+LIBFT = libft/libft.a
 
 SRC_DIR = ./src/
 
@@ -32,7 +32,7 @@ all: lib $(NAME)
 bonus: all $(BONUS_NAME)
 
 lib:
-	make -sC ../libft
+	make -sC libft
 
 $(NAME): $(OBJECTS)
 	@echo "Compiling push_swap"
@@ -46,13 +46,13 @@ $(BONUS_NAME): $(BONUS_OBJECTS)
 
 clean:
 	@echo "Cleaning"
-	@make clean -sC ../libft
+	@make clean -sC libft
 	@$(RM) $(OBJECTS) $(BONUS_OBJECTS)
 	@echo "Done"
 
 fclean: clean
 	@echo "Removing"
-	@make fclean -sC ../libft
+	@make fclean -sC libft
 	@$(RM) $(NAME) $(BONUS_NAME) $(OBJECTS) $(BONUS_OBJECTS)
 	@echo "Done"
 

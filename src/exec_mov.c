@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:31:55 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/20 18:01:10 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:39:10 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	mov(t_intl **list_a, t_intl **list_b)
 {
@@ -34,7 +34,7 @@ void	mov(t_intl **list_a, t_intl **list_b)
 			mov_minusplus(list_a, list_b, mov_a[bp], mov_b[bp]);
 		else if (mov_a[bp] <= 0 && mov_b[bp] <= 0)
 			mov_minusminus(list_a, list_b, mov_a[bp], mov_b[bp]);
-		//mov_reorder(list_a);
+		mov_reorder(list_a);
 		free(mov_a);
 		free(mov_b);
 	}

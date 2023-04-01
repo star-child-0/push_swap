@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 21:04:04 by anvannin          #+#    #+#             */
-/*   Updated: 2023/02/01 19:20:36 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:51:29 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	pa(t_intl **list_b, t_intl **list_a)
 {

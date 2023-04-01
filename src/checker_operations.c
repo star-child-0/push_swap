@@ -6,11 +6,11 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 21:04:04 by anvannin          #+#    #+#             */
-/*   Updated: 2023/02/08 18:33:22 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:24:16 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/checker.h"
 
 void	do_sa(t_intl **list)
 {

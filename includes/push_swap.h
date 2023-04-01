@@ -6,14 +6,14 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:47:34 by anvannin          #+#    #+#             */
-/*   Updated: 2023/03/19 19:16:45 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:48:12 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 
 // algorithm_selector.c
 void	algorithm_selector(int argc, t_intl **list_a, t_intl **list_b);
