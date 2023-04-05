@@ -3,5 +3,5 @@
 	url = https://github.com/star-child-0/Mylibft.git
 
 [submodule "push_swap_visualizer"]
-	path = push_swap
+	path = push_swap_visualizer
 	url = https://github.com/o-reo/push_swap_visualizer.git
