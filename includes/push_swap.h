@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:47:34 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 15:48:12 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:01:19 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	reorder_lis(t_intl **list_a, int *arr, int *len, int *lis);
 int		*ft_mov_b(int len);
 int		*ft_mov_a(t_intl **list_a, t_intl **list_b, int len);
 void	mov(t_intl **list_a, t_intl **list_b);
-void	mov_a_fill(t_intl **list_a, int *mov_a, t_intl *tmp_b, int i);
 int		*find_best_mov(int *mov_a, int *mov_b, int len);
 int		find_best_pos(int *best, int len);
 

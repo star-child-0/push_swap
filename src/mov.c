@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:16:24 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 16:38:43 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:27:20 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@ int	*ft_mov_b(int len)
 {
 	int	*mov_b;
 	int	i;
-	int	j;
 
 	mov_b = (int *)malloc(sizeof(int) * len);
 	i = -1;
-	while (++i <= len / 2)
+	while (++i < len)
+	{
 		mov_b[i] = i;
-	j = (i - 2) * -1;
-	if (len % 2 != 0)
-		j--;
-	while (i < len)
-		mov_b[i++] = j++;
+		if (i > len / 2)
+			mov_b[i] -= len;
+	}
 	return (mov_b);
 }
 
-void	mov_a_fill(t_intl **list_a, int *mov_a, t_intl *tmp_b, int i)
+static void	mov_a_fill(t_intl **list_a, int *mov_a, t_intl *tmp_b, int i)
 {
 	int		m;
 	t_intl	*tmp_a;
@@ -67,6 +65,72 @@ int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
 	}
 	return (mov_a);
 }
+
+/*
+int	find_smaller(int stack_data, t_intl *current)
+{
+	t_intl	*tmp;
+
+	tmp = current->next;
+	while (tmp)
+	{
+		if (stack_data < tmp->content && tmp->content < current->content)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	smallest_to_top(t_intl **list_a)
+{
+	int	i;
+	int	len;
+
+	i = tintl_smallest_pos(list_a);
+	len = tintl_length(list_a);
+	if (i > len / 2)
+		i = (i - len) * -1;
+	return (i);
+}
+
+int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
+{
+	int		i;
+	int		m;
+	int		*mov_a;
+	t_intl	*tmp_b;
+	t_intl	*tmp_a;
+
+	i = 0;
+	tmp_b = (*list_b);
+	mov_a = (int *)malloc(sizeof(int) * len);
+	while (tmp_b)
+	{
+		m = 0;
+		tmp_a = (*list_a);
+		while (tmp_a->next)
+		{
+			if (tmp_b->content < tintl_smallest(list_a)
+				|| tmp_b->content > tintl_biggest(list_a))
+				mov_a[i] = smallest_to_top(list_a);
+			if (tmp_b->content < tmp_a->content
+				&& !find_smaller(tmp_a->content, tmp_a))
+				break ;
+			tmp_a = tmp_a->next;
+			m++;
+		}
+
+		if (m > len / 2)
+			mov_a[m] = (m - len) * -1;
+		else
+			mov_a[m] = m;
+
+		tmp_b = tmp_b->next;
+		i++;
+	}
+	return (mov_a);
+}
+*/
 
 int	*find_best_mov(int *mov_a, int *mov_b, int len)
 {

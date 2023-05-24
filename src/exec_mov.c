@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:31:55 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 16:39:10 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:28:15 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	mov(t_intl **list_a, t_intl **list_b)
 	{
 		mov_a = ft_mov_a(list_a, list_b, tintl_length(list_b));
 		mov_b = ft_mov_b(tintl_length(list_b));
+
+		// for (int i = 0; i < tintl_length(list_b); i++)
+		// 	ft_printf("%d\t%d\n", mov_a[i], mov_b[i]);
+
 		bp = find_best_pos(find_best_mov(mov_a, mov_b, tintl_length(list_b)),
 				tintl_length(list_b));
 		if (mov_a[bp] >= 0 && mov_b[bp] >= 0)
@@ -38,6 +42,8 @@ void	mov(t_intl **list_a, t_intl **list_b)
 		free(mov_a);
 		free(mov_b);
 	}
+	// uncomment when list_a is sorted in segments
+	// mov_reorder(list_a);
 }
 
 void	mov_plusplus(t_intl **list_a, t_intl **list_b, int a, int b)
