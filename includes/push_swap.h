@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:47:34 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/24 20:01:19 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:45:20 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 void	algorithm_selector(int argc, t_intl **list_a, t_intl **list_b);
 
 // utils.c
-int		stackify(t_intl **list, int argc, char *argv[]);
-int		check_repetition(int argc, char *argv[]);
-int		argv_check(int argc, char *argv[]);
-void	simplify_list(t_intl **list);
-void	simplify_list2(t_intl **list, int *orig);
+int		*argv_check(int argc, char *argv[], int *nums);
 
 // utils2.c
-int		bin_mag(int n);
-int		*order_arr(int *arr, int len);
+int		tot_nums(char **argv);
+int		check_repetition(int *nums);
+int		stackify(t_intl **list, int *nums);
+
 
 // LIS algorithm
 void	lis_algorithm(t_intl **list_a, t_intl **list_b);
@@ -57,7 +55,6 @@ void	mov_reorder(t_intl **list);
 void	size_3_algorithm(t_intl **list);
 void	size_5_algorithm(int argc, t_intl **list_a, t_intl **list_b);
 void	size_5_algorithm2(t_intl **list_a, t_intl **list_b);
-void	radix_sort(t_intl **list_a, t_intl **list_b);
 void	size_any_algorithm(t_intl **list_a, t_intl **list_b);
 
 // operations_p.c

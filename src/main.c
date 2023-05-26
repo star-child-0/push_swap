@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:43:33 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 15:51:29 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:56:28 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,22 @@ int	main(int argc, char *argv[])
 {
 	t_intl	*list_a;
 	t_intl	*list_b;
+	int		*nums;
 
 	list_a = NULL;
 	list_b = NULL;
+	nums = NULL;
 	if (argc == 1)
 		return (0);
-	if (!argv_check(argc, argv) || !stackify(&list_a, argc, argv))
+	nums = argv_check(argc, argv, nums);
+	if (!nums || !stackify(&list_a, nums))
 	{
 		ft_putstr("Error\n");
 		return (0);
 	}
-	algorithm_selector(argc - 1, &list_a, &list_b);
+	tintl_print(&list_a);
+	algorithm_selector(tot_nums(argv), &list_a, &list_b);
 	tintl_free(&list_a);
+	free(nums);
 	return (0);
 }
