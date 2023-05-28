@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:43:33 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/26 17:56:28 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/28 08:53:06 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 		return (0);
 	nums = argv_check(argc, argv, nums);
-	if (!nums || !stackify(&list_a, nums))
+	if (!nums || !stackify(&list_a, nums, tot_nums(argv)))
 	{
 		ft_putstr("Error\n");
 		return (0);
 	}
-	tintl_print(&list_a);
-	algorithm_selector(tot_nums(argv), &list_a, &list_b);
+	algorithm_selector(tintl_length(&list_a), &list_a, &list_b);
 	tintl_free(&list_a);
-	free(nums);
 	return (0);
 }

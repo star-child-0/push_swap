@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:16:24 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/24 20:27:20 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/28 12:34:23 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,109 +28,124 @@ int	*ft_mov_b(int len)
 	return (mov_b);
 }
 
-static void	mov_a_fill(t_intl **list_a, int *mov_a, t_intl *tmp_b, int i)
-{
-	int		m;
-	t_intl	*tmp_a;
-
-	m = 0;
-	tmp_a = (*list_a);
-	while (tmp_a->next && ++m)
-	{
-		mov_a[i] = m;
-		if (tmp_b->content < tintl_smallest(list_a)
-			|| tmp_b->content > tintl_biggest(list_a))
-			mov_a[i] = 0;
-		if (tmp_b->content > tmp_a->content
-			&& tmp_b->content < tmp_a->next->content)
-			break ;
-		tmp_a = tmp_a->next;
-	}
-}
-
-int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
+static int	smallest_to_top(t_intl **list)
 {
 	int		i;
+	t_intl	*tmp;
+
+	tmp = (*list);
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->content == tintl_smallest(list))
+			break ;
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+/* int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
+{
+	int		i;
+	int		j;
 	int		*mov_a;
+	t_intl	*tmp_a;
 	t_intl	*tmp_b;
 
-	i = 0;
-	tmp_b = (*list_b);
 	mov_a = (int *)malloc(sizeof(int) * len);
+	if (!mov_a)
+		return (0);
+	tmp_b = (*list_b);
+	i = 0;
 	while (tmp_b)
 	{
-		mov_a_fill(list_a, mov_a, tmp_b, i);
+		if (tmp_b->content > tintl_biggest(list_a))
+			mov_a[i] = smallest_to_top(list_a);
+		else
+		{
+			j = 1;
+			tmp_a = (*list_a);
+
+			while (tmp_a)
+			{
+				if ((tmp_b->content > tmp_a->content && tmp_a->next
+						&& tmp_b->content < tmp_a->next->content))
+					break ;
+				else
+					j++;
+				tmp_a = tmp_a->next;
+			}
+			mov_a[i] = j;
+
+			if (j > len / 2)
+				mov_a[i] -= len;
+		}
+
 		tmp_b = tmp_b->next;
 		i++;
 	}
+
 	return (mov_a);
 }
+ */
 
-/*
-int	find_smaller(int stack_data, t_intl *current)
+static int	ft_mov_a2(t_intl *tmp_a, int num)
 {
-	t_intl	*tmp;
+	t_intl	*tmp_a2;
 
-	tmp = current->next;
-	while (tmp)
+	tmp_a2 = tmp_a->next;
+	while (tmp_a2)
 	{
-		if (stack_data < tmp->content && tmp->content < current->content)
+		if (tmp_a2->content < tmp_a->content
+			&& tmp_a2->content > num)
 			return (1);
-		tmp = tmp->next;
+		tmp_a2 = tmp_a2->next;
 	}
 	return (0);
 }
 
-int	smallest_to_top(t_intl **list_a)
-{
-	int	i;
-	int	len;
-
-	i = tintl_smallest_pos(list_a);
-	len = tintl_length(list_a);
-	if (i > len / 2)
-		i = (i - len) * -1;
-	return (i);
-}
 
 int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
 {
 	int		i;
-	int		m;
+	int		j;
 	int		*mov_a;
 	t_intl	*tmp_b;
 	t_intl	*tmp_a;
 
-	i = 0;
-	tmp_b = (*list_b);
 	mov_a = (int *)malloc(sizeof(int) * len);
+	tmp_b = (*list_b);
+	i = 0;
 	while (tmp_b)
 	{
-		m = 0;
-		tmp_a = (*list_a);
-		while (tmp_a->next)
+		if (tmp_b->content > tintl_biggest(list_a))
+			j = smallest_to_top(list_a);
+		else
 		{
-			if (tmp_b->content < tintl_smallest(list_a)
-				|| tmp_b->content > tintl_biggest(list_a))
-				mov_a[i] = smallest_to_top(list_a);
-			if (tmp_b->content < tmp_a->content
-				&& !find_smaller(tmp_a->content, tmp_a))
-				break ;
-			tmp_a = tmp_a->next;
-			m++;
+			j = 0;
+			tmp_a = (*list_a);
+			while (tmp_a)
+			{
+				if (tmp_b->content < tmp_a->content)
+				{
+					if (!ft_mov_a2(tmp_a, tmp_b->content))
+						break ;
+				}
+				j ++;
+				tmp_a = tmp_a->next;
+			}
 		}
 
-		if (m > len / 2)
-			mov_a[m] = (m - len) * -1;
-		else
-			mov_a[m] = m;
+		if (j > tintl_length(list_a) / 2)
+			j -= tintl_length(list_a);
 
-		tmp_b = tmp_b->next;
+		mov_a[i] = j;
 		i++;
+		tmp_b = tmp_b->next;
 	}
 	return (mov_a);
 }
-*/
 
 int	*find_best_mov(int *mov_a, int *mov_b, int len)
 {
@@ -142,16 +157,16 @@ int	*find_best_mov(int *mov_a, int *mov_b, int len)
 	while (++i < len)
 	{
 		if (mov_a[i] >= 0 && mov_b[i] >= 0
-			&& mov_a[i] > mov_b[i])
+			&& mov_a[i] >= mov_b[i])
 			best[i] = mov_a[i];
 		else if (mov_a[i] >= 0 && mov_b[i] >= 0
 			&& mov_a[i] < mov_b[i])
 			best[i] = mov_b[i];
 		else if (mov_a[i] < 0 && mov_b[i] < 0
-			&& mov_a[i] < mov_b[i])
+			&& mov_a[i] > mov_b[i])
 			best[i] = mov_a[i] * -1;
 		else if (mov_a[i] < 0 && mov_b[i] < 0
-			&& mov_a[i] > mov_b[i])
+			&& mov_a[i] < mov_b[i])
 			best[i] = mov_b[i] * -1;
 		else if (mov_a[i] >= 0 && mov_b[i] < 0)
 			best[i] = mov_a[i] + (mov_b[i] * -1);

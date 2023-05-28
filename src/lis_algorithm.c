@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:30:58 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 15:51:29 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:56:24 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int	lis_size(int *len, int list_len)
 	return (max);
 }
 
-int	number_in_array(int n, int *arr, int len)
+static int	number_in_array(int n, long *arr, int len)
 {
 	int	i;
 
 	i = -1;
-	while (++i < len)
+	while (++i < len && arr[i] != LONG_MAX)
 		if (arr[i] == n)
 			return (1);
 	return (0);
@@ -70,15 +70,18 @@ void	get_lis_values(int *len, int *arr, t_intl **list_a, t_intl **list_b)
 	int	i;
 	int	max;
 	int	rem;
-	int	*lis;
+	int	save;
+	long	*lis;
 
 	i = tintl_length(list_a);
 	max = lis_size(len, tintl_length(list_a));
 	rem = tintl_length(list_a) - max;
-	lis = (int *)malloc(sizeof(int) * max);
+	lis = (long *)malloc(sizeof(long) * max + 1);
+	save = max;
 	while (--i >= 0)
 		if (len[i] == max)
 			lis[--max] = arr[i];
+	lis[save] = LONG_MAX;
 	while (max < rem)
 	{
 		if (is_tintl_ordered(list_a))
@@ -91,7 +94,7 @@ void	get_lis_values(int *len, int *arr, t_intl **list_a, t_intl **list_b)
 	reorder_lis(list_a, arr, len, lis);
 }
 
-void	reorder_lis(t_intl **list_a, int *arr, int *len, int *lis)
+void	reorder_lis(t_intl **list_a, int *arr, int *len, long *lis)
 {
 	t_intl	*tmp;
 	int		i;

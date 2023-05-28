@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:47:34 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/26 17:45:20 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/28 09:36:06 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,13 @@ int		*argv_check(int argc, char *argv[], int *nums);
 
 // utils2.c
 int		tot_nums(char **argv);
-int		check_repetition(int *nums);
-int		stackify(t_intl **list, int *nums);
-
+int		stackify(t_intl **list, int *nums, int len);
 
 // LIS algorithm
 void	lis_algorithm(t_intl **list_a, t_intl **list_b);
 int		lis_size(int *len, int list_len);
-int		number_in_array(int n, int *arr, int len);
 void	get_lis_values(int *len, int *arr, t_intl **list_a, t_intl **list_b);
-void	reorder_lis(t_intl **list_a, int *arr, int *len, int *lis);
+void	reorder_lis(t_intl **list_a, int *arr, int *len, long *lis);
 
 // mov.c
 int		*ft_mov_b(int len);
