@@ -6,89 +6,105 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:52:51 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 16:24:16 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/28 10:03:17 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-int	check_repetition_c(int argc, char *argv[])
+static int	check_repetition_c(int *nums, int len)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (++i < argc)
+	i = -1;
+	while (++i < len)
 	{
 		j = i;
-		while (++j < argc)
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+		while (++j < len)
+			if (nums[i] == nums[j])
 				return (0);
 	}
 	return (1);
 }
 
-int	argv_check_c(int argc, char *argv[])
+static int	nums_check_c(char **av)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (!check_repetition_c(argc, argv) || argc == 1)
-		return (0);
-	while (++i < argc)
+	while (av[++i])
 	{
 		j = -1;
-		while (argv[i][++j] != '\0')
-			if (!(ft_isdigit(argv[i][j]) || argv[i][j] == '+'
-				|| argv[i][j] == '-'))
+		while (av[i][++j])
+			if (!(ft_isdigit(av[i][j]) || av[i][j] == ' ' || av[i][j] == '+'
+				||av[i][j] == '-'))
 				return (0);
 	}
 	return (1);
 }
 
-t_intl	*ft_push_c(int content)
+static int	signs_check_c(char **av)
 {
-	t_intl	*new;
+	int	i;
+	int	j;
 
-	new = (t_intl *)malloc(sizeof(t_intl));
-	new->content = content;
-	new->next = NULL;
-	return (new);
-}
-
-int	stackify_c(t_intl **list, int argc, char *argv[])
-{
-	int		i;
-	t_intl	*node;
-
-	node = (t_intl *) malloc(sizeof(t_intl));
-	node->content = ft_atol(argv[1]);
-	node->next = NULL;
-	(*list) = node;
-	if (!list)
-		return (0);
-	i = 1;
-	while (++i < argc)
+	i = 0;
+	while (av[++i])
 	{
-		if (ft_atol(argv[i]) < INT_MIN || ft_atol(argv[i]) > INT_MAX)
-			return (0);
-		(*list)->next = ft_push_c(ft_atoi(argv[i]));
-		(*list) = (*list)->next;
+		j = -1;
+		while (av[i][++j])
+			if ((av[i][j] == '+' || av[i][j] == '-')
+				&& !ft_isdigit(av[i][j + 1]))
+				return (0);
 	}
-	(*list) = node;
 	return (1);
 }
 
-void	tintl_free_c(t_intl **list)
+static int	num_splitter_c(char **argv, int *nums, int len, int i)
 {
-	t_intl	*tmp;
+	int		j;
+	int		k;
+	char	**split;
 
-	tmp = (*list)->next;
-	while (tmp)
+	k = 0;
+	while (i < len + 1 && argv[i])
 	{
-		(*list)->next = tmp->next;
-		free(tmp);
-		tmp = (*list)->next;
+		j = -1;
+		split = ft_split(argv[i], ' ');
+		while (split[++j])
+		{
+			if (ft_atol(split[j]) < INT_MIN || ft_atol(split[j]) > INT_MAX)
+			{
+				free_matrix((void **)split);
+				return (0);
+			}
+			nums[k] = ft_atoi(split[j]);
+			k++;
+		}
+		free_matrix((void **)split);
+		i++;
 	}
+	return (1);
+}
+
+int	*argv_check_c(int argc, char *argv[], int *nums)
+{
+	int	len;
+
+	len = tot_nums_c(argv);
+	if (argc == 1 || !len || !nums_check_c(argv) || !signs_check_c(argv))
+		return (NULL);
+	nums = (int *)malloc(sizeof(int) * len);
+	if (!nums)
+		return (0);
+	if (!num_splitter_c(argv, nums, len, 1)
+		|| !check_repetition_c(nums, len)
+	)
+	{
+		free(nums);
+		return (NULL);
+	}
+	return (nums);
 }

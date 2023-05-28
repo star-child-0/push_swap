@@ -3,7 +3,7 @@ FILES = main.c sorting_algorithms.c lis_algorithm.c algorithm_selector.c \
 	operations_p.c operations_s.c operations_r.c operations_r2.c
 
 BONUS_FILES = checker.c checker_utils.c checker_utils2.c \
-		checker_operations.c checker_operations2.c
+		checker_utils3.c checker_read_moves.c checker_operations.c
 
 LIBFT = libft/libft.a
 
@@ -21,7 +21,7 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = push_swap
 
@@ -57,10 +57,6 @@ fclean: clean
 	@echo "Done"
 
 re: fclean bonus
-
-norm:
-	norminette ./libft/
-	norminette $(SRC)
 
 .PHONY:	all clean fclean re bonus
 .SILENT:

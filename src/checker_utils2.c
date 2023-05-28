@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:05:51 by anvannin          #+#    #+#             */
-/*   Updated: 2023/04/01 16:24:16 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/28 09:15:20 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,33 @@ void	list_print_c(t_intl **list)
 			ft_printf("%d\n", tmp->content);
 		tmp = tmp->next;
 	}
+}
+
+int	tot_nums_c(char **argv)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (argv[++i])
+	{
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (ft_isdigit(argv[i][j]) || argv[i][j] == ' ' || argv[i][j] == '-'
+				|| argv[i][j] == '+')
+			{
+				while (argv[i][j] == ' ' || argv[i][j] == '-'
+					|| argv[i][j] == '+' || ft_isdigit(argv[i][j + 1]))
+					j++;
+				if (argv[i][j] == '\0')
+					break ;
+				if (ft_isdigit(argv[i][j]))
+					len++;
+			}
+		}
+	}
+	return (len);
 }
