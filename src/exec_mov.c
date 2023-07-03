@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:31:55 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/28 12:34:14 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:05:30 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	mov(t_intl **list_a, t_intl **list_b)
 {
 	int	*mov_a;
 	int	*mov_b;
+	int	*best_mov;
 	int	bp;
 	int	len;
 
@@ -27,15 +28,12 @@ void	mov(t_intl **list_a, t_intl **list_b)
 
 		mov_a = ft_mov_a(list_a, list_b, tintl_length(list_b));
 		mov_b = ft_mov_b(tintl_length(list_b));
+		best_mov = find_best_mov(mov_a, mov_b, tintl_length(list_b));
 
 		// for (int i = 0; i < tintl_length(list_b); i++)
-		// 	ft_printf("mov_a[%d]: %d\tmov_b[%d]: %d\n", i, mov_a[i], i, mov_b[i]);
+		// 	ft_printf("mov_a[%d]: %d\tmov_b[%d]: %d\tbest[%d]: %d\n", i, mov_a[i], i, mov_b[i], i, best_mov[i]);
 
-		int *best_mov = find_best_mov(mov_a, mov_b, tintl_length(list_b));
-
-		// for (int i = 0; i < tintl_length(list_b); i++)
-		// 	ft_printf("best_mov[%d]: %d\n", i, best_mov[i]);
-
+		// return ;
 		bp = find_best_pos(best_mov, tintl_length(list_b));
 		// ft_printf("bp: %d\n", bp);
 
@@ -50,9 +48,10 @@ void	mov(t_intl **list_a, t_intl **list_b)
 		pa(list_b, list_a);
 		free(mov_a);
 		free(mov_b);
+		free(best_mov);
 	}
 	// uncomment when list_a is sorted in segments
-	mov_reorder(list_a);
+	// mov_reorder(list_a);
 }
 
 void	mov_plusplus(t_intl **list_a, t_intl **list_b, int a, int b)

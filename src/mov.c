@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:16:24 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/28 12:34:23 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:20:45 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int	*ft_mov_a(t_intl **list_a, t_intl **list_b, int len)
 	i = 0;
 	while (tmp_b)
 	{
-		if (tmp_b->content > tintl_biggest(list_a))
+		if (tmp_b->content > tintl_biggest(list_a)
+			|| tmp_b->content < tintl_smallest(list_a))
 			j = smallest_to_top(list_a);
 		else
 		{
@@ -187,12 +188,11 @@ int	find_best_pos(int *best, int len)
 	small_i = i;
 	while (++i < len)
 	{
-		if (best[i] < small)
+		if (i <= len && best[i] < small)
 		{
 			small = best[i];
 			small_i = i;
 		}
 	}
-	free(best);
 	return (small_i);
 }

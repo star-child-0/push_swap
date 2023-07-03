@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:30:58 by anvannin          #+#    #+#             */
-/*   Updated: 2023/05/27 15:56:24 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:32:30 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ static int	number_in_array(int n, long *arr, int len)
 
 void	get_lis_values(int *len, int *arr, t_intl **list_a, t_intl **list_b)
 {
-	int	i;
-	int	max;
-	int	rem;
-	int	save;
+	int		i;
+	int		max;
+	int		rem;
+	int		save;
 	long	*lis;
 
 	i = tintl_length(list_a);
 	max = lis_size(len, tintl_length(list_a));
 	rem = tintl_length(list_a) - max;
 	lis = (long *)malloc(sizeof(long) * max + 1);
-	save = max;
+	save = max -1;
 	while (--i >= 0)
 		if (len[i] == max)
 			lis[--max] = arr[i];
